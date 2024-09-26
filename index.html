@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faakdis Website</title>
+    <style>
+        body {
+            background: url('https://faakdis.com/image/4.gif') no-repeat center center;
+            background-size: cover;
+            color: #00FFFF;
+            font-family: 'Arial', sans-serif;
+            margin: 40;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 98vh;
+            flex-direction: column;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .cta-buttons a, .cta-buttons button {
+            text-decoration: none;
+            color: #00ffff;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid #00FFFF;
+            border-radius: 7px;
+            padding: 4px 8px;
+            margin: 2px;
+            font-size: 12px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-buttons a:hover, .cta-buttons button:hover {
+            background-color: #0055FF;
+            box-shadow: 0 0 6px #00FFFF;
+        }
+
+        .pof-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 0 6px #00FFFF;
+            max-width: 90%;
+            margin: 5px;
+        }
+
+        .pof-dashboard {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #00FFFF;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 6px #00FFFF;
+            margin-bottom: 8px;
+        }
+
+        .canvas-container {
+            position: relative;
+            border: 0px solid #00FFFF;
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: transparent;
+        }
+
+        .button {
+            padding: 6px 12px;
+            background-color: #00FFFF;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 3px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0055FF;
+            box-shadow: 0 0 6px #00FFFF;
+        }
+
+        .download-btn {
+            display: none;
+        }
+
+        .mining-stats {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .mining-stats div {
+            margin: 3px 0;
+            font-size: 12px;
+        }
+
+        .level-bar {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: calc(100% - 20px);
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #00FFFF;
+            border-radius: 8px;
+            box-shadow: 0 0 4px #00FFFF;
+            display: flex;
+            align-items: center;
+            padding: 2px;
+        }
+
+        .level-fill {
+            height: 100%;
+            background-color: #00FFFF;
+            border-radius: 6px;
+            transition: width 0.3s;
+        }
+
+        .compact-button-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .compact-button {
+            background-color: #00FFFF;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .compact-button:hover {
+            background-color: #0055FF;
+            box-shadow: 0 0 6px #00FFFF;
+        }
+
+        .message-sender-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid #000;
+            border-radius: 8px;
+            box-shadow: 0 0 6px #00FFFF;
+            max-width: 90%;
+        }
+
+        .message-sender-container textarea {
+            height: 70px;
+            resize: horizontal;
+        }
+
+        .message-sender-container button {
+            padding: 10px 12px;
+            border: none;
+            border-radius: 5px;
+            background: cyan;
+            color: black;
+            cursor: pointer;
+            font-size: 8px;
+            transition: background 0.3s;
+        }
+
+        .message-sender-container button:hover {
+            background: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" src="https://faakdis.com/MUSIC%2FGONE.mp3" preload="auto"></audio>
+    <audio id="messageSendSound" src="https://faakdis.com/MUSIC/audio%20(2).mp3"></audio>
+    
+   
+    <div class="cta-buttons">
+        
+        <a href="https://faakdis.neocities.org/HOWTOGETIT">HTGI</a>
+        <a href="https://faakdis.neocities.org/IQG">IQG</a>
+        <a href="https://faakdis.neocities.org/FAAKNMEMO">FNM</a>
+        <a href="https://faakdis.neocities.org/BEANIEBOYZ">BB</a>
+        <a href="https://faakdis.neocities.org/TAPED">TAPED</a>
+        <a href="https://faakdis.com/FOMO">FOMO</a>
+        <a href="https://faakdis.neocities.org/SLOT">SM</a>
+        <a href="https://faakdis.neocities.org/FORTUNECOOKIE">F C</a>
+        <a href="https://faakdis.com/GRABDONALD">GD</a>
+        <a href="https://faakdis.com/FSG">FSG</a>
+        <a href="https://faakdis.com/64">64</a>
+        <a href="https://faakdis.com/NFTDRAWING">NDB</a>
+ 
+   </div>
+        
+    <div class="cta-buttons">   
+       
+        <a href="https://faakdis.com/MONEYMUSICETH">MONEYMUSIC.ETH</a>
+        
+    </div>
+   
+    
+  <div class="cta-buttons">   
+       
+        <a href="https://faakdis.com/PORKMEMES">$PORK MEMES</a>
+        <a href="https://faakdis.com/MONEYMEMES">$MONEY MEMES</a>
+        <a href="https://faakdis.com/SHEEPMEMES">$SHEEP MEMES</a>
+        
+    </div>
+  
+    <div class="cta-buttons">
+    
+        <a href="https://faakdis.com/HAMMERSHEEP">HSG</a>
+        <a href="https://faakdis.com/0x100db67f41a2df3c32cc7c0955694b98339b7311">SRG</a>
+        <a href="https://faakdis.com/HHG">HHG</a>
+        <a href="https://faakdis.neocities.org/COINGENERATOR">CG</a>
+        <a href="https://faakdis.com/GFSVG">GFSVG</a>
+            
+    </div> 
+        
+
+    <div class="pof-container">
+        <div class="pof-dashboard">
+            <h1>P o F</h1>
+            <button id="startButton" class="button" onclick="startMining()">Start Mining</button>
+            <button id="stopButton" class="button" onclick="stopMining()" style="display: none;">Stop Mining</button>
+        </div>
+        <div class="canvas-container">
+            <canvas id="minedCanvas"></canvas>
+            <div class="level-bar">
+                <div id="levelFill" class="level-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+        <button class="button download-btn" id="downloadBtn" onclick="downloadImage()" style="display: none;">Download PoF Image</button>
+        <div class="mining-stats">
+            <h2>Mining Statistics</h2>
+            <div id="hashRate">Hash Rate: 0 H/s & Faak Rate: 0 H/s</div>
+            <div id="minedImages">Images Mined: 0</div>
+        </div>
+    </div>
+
+    <div class="message-sender-container">
+        <h2></h2>
+        <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+        <button onclick="sendMessage()">Send it</button>
+    </div>
+
+    <script>
+        const imageSrc = 'https://faakdis.com/image/PoF.png';
+        const imageWidth = 50; // Size of the images
+        const imageHeight = 50;
+        let miningInterval;
+        let imageCount = 0;
+        let startTime;
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        function startMining() {
+            document.getElementById('startButton').style.display = 'none';
+            document.getElementById('stopButton').style.display = 'inline-block';
+            backgroundMusic.play(); // Start music when mining starts
+            startTime = Date.now();
+            miningInterval = setInterval(addImageToCanvas, 5000); // Add image every 5 seconds
+        }
+
+        function stopMining() {
+            document.getElementById('startButton').style.display = 'inline-block';
+            document.getElementById('stopButton').style.display = 'none';
+            clearInterval(miningInterval);
+            backgroundMusic.pause(); // Stop music when mining stops
+            backgroundMusic.currentTime = 0; // Reset music to start
+        }
+
+        function addImageToCanvas() {
+            const canvas = document.getElementById('minedCanvas');
+            const ctx = canvas.getContext('2d');
+            const image = new Image();
+            image.src = imageSrc;
+
+            image.onload = () => {
+                const x = Math.random() * (canvas.width - imageWidth);
+                const y = Math.random() * (canvas.height - imageHeight);
+                ctx.drawImage(image, x, y, imageWidth, imageHeight);
+                imageCount++;
+                document.getElementById('minedImages').textContent = `Images Mined: ${imageCount}`;
+            };
+
+            updateLevelBar();
+            updateHashRate();
+        }
+
+        function updateLevelBar() {
+            const levelFill = document.getElementById('levelFill');
+            let width = parseFloat(levelFill.style.width);
+            width = (width + 5) % 100; // Increase level and wrap around
+            levelFill.style.width = `${width}%`;
+        }
+
+        function updateHashRate() {
+            const elapsedTime = (Date.now() - startTime) / 1000; // Elapsed time in seconds
+            const hashRate = (imageCount / elapsedTime).toFixed(2);
+            document.getElementById('hashRate').textContent = `Hash Rate: ${hashRate} H/s (Faak Rate: ${hashRate} H/s)`;
+        }
+
+        function downloadImage() {
+            const canvas = document.getElementById('minedCanvas');
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'mined_image.png';
+            link.click();
+        }
+
+        function playButtonSound() {
+            document.getElementById('compactButtonSound').play();
+        }
+
+        function sendMessage() {
+            document.getElementById('messageSendSound').play();
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value;
+            console.log("Message sent:", message); // Placeholder for actual message sending logic
+            messageInput.value = ''; // Clear the input field
+        }
+
+        // Start background music
+        backgroundMusic.play();
+    </script>
+</body>
+</html>
