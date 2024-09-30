@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faakdis Website</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script> <!-- Include Web3.js -->
     <style>
         body {
             background: url('https://faakdis.com/image/4.gif') no-repeat center center;
@@ -55,6 +56,7 @@
             box-shadow: 0 0 6px #00FFFF;
             max-width: 90%;
             margin: 5px;
+            position: relative;
         }
 
         .pof-dashboard {
@@ -188,55 +190,71 @@
         .message-sender-container button:hover {
             background: #00bcd4;
         }
+
+        /* New Styles for Additional Features */
+        .additional-features {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .additional-features label {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .additional-features input[type=range] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .mining-report-btn {
+            display: none;
+        }
+
+        .token-balance {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .pause-resume-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .pause-resume-buttons button {
+            margin: 0 5px;
+        }
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" src="https://faakdis.com/MUSIC%2FGONE.mp3" preload="auto"></audio>
-    <audio id="messageSendSound" src="https://faakdis.com/MUSIC/audio%20(2).mp3"></audio>
     
-   
+    
     <div class="cta-buttons">
-        
-        <a href="https://faakdis.neocities.org/HOWTOGETIT">HTGI</a>
-        <a href="https://faakdis.neocities.org/IQG">IQG</a>
-        <a href="https://faakdis.neocities.org/FAAKNMEMO">FNM</a>
-        <a href="https://faakdis.neocities.org/BEANIEBOYZ">BB</a>
-        <a href="https://faakdis.neocities.org/TAPED">TAPED</a>
-        <a href="https://faakdis.com/FOMO">FOMO</a>
-        <a href="https://faakdis.neocities.org/SLOT">SM</a>
-        <a href="https://faakdis.neocities.org/FORTUNECOOKIE">F C</a>
-        <a href="https://faakdis.com/GRABDONALD">GD</a>
-        <a href="https://faakdis.com/FSG">FSG</a>
-        <a href="https://faakdis.com/64">64</a>
-        <a href="https://faakdis.com/NFTDRAWING">NDB</a>
- 
-   </div>
+        <a href="">S E P O L I A  T E S T N E T </a>
+    </div>
         
     <div class="cta-buttons">   
-       
         <a href="https://faakdis.com/MONEYMUSICETH">MONEYMUSIC.ETH</a>
-        
+        <a href="https://faakdis.com/SEPOLIAGAMES">G A M E S</a>
     </div>
-   
-    
-  <div class="cta-buttons">   
-       
-        <a href="https://faakdis.com/PORKMEMES">$PORK MEMES</a>
-        <a href="https://faakdis.com/MONEYMEMES">$MONEY MEMES</a>
-        <a href="https://faakdis.com/SHEEPMEMES">$SHEEP MEMES</a>
-        
-    </div>
-  
+
     <div class="cta-buttons">
-    
-        <a href="https://faakdis.com/HAMMERSHEEP">HSG</a>
         <a href="https://faakdis.com/0x100db67f41a2df3c32cc7c0955694b98339b7311">SRG</a>
         <a href="https://faakdis.com/HHG">HHG</a>
         <a href="https://faakdis.neocities.org/COINGENERATOR">CG</a>
         <a href="https://faakdis.com/GFSVG">GFSVG</a>
-            
-    </div> 
-        
+        <a href="https://faakdis.com/MONEYMEMES">$MONEY MEMES</a>
+        <a href="https://faakdis.com/SHEEPMEMES">$SHEEP MEMES</a>
+    </div>
+    
+    
+    <!-- Background Music -->
+    <audio id="backgroundMusic" src="https://faakdis.com/MUSIC%2FGONE.mp3" preload="auto"></audio>
 
     <div class="pof-container">
         <div class="pof-dashboard">
@@ -251,97 +269,291 @@
             </div>
         </div>
         <button class="button download-btn" id="downloadBtn" onclick="downloadImage()" style="display: none;">Download PoF Image</button>
+        <button class="button claim-btn" id="claimBtn" onclick="claimTokens()" style="display: none;">Claim Rewards</button>
         <div class="mining-stats">
             <h2>Mining Statistics</h2>
             <div id="hashRate">Hash Rate: 0 H/s & Faak Rate: 0 H/s</div>
             <div id="minedImages">Images Mined: 0</div>
+            <div id="miningReward">Mining Reward: 0</div>
+            <div class="token-balance" id="tokenBalance">Token Balance: 0 $FKDST</div>
+        </div>
+        <button id="connectButton" class="button" onclick="connectWallet()">Connect Wallet</button>
+        <div id="walletAddress" style="margin-top: 10px; color: #00FFFF;"></div>
+
+        <!-- Additional Features -->
+        <div class="additional-features">
+            <!-- Adjustable Mining Speed -->
+            <label for="miningSpeed">Mining Speed (ms): <span id="speedValue">500</span></label>
+            <input type="range" id="miningSpeed" min="100" max="1000" value="500" oninput="adjustMiningSpeed(this.value)">
+            
+            <!-- Mining Report Download -->
+            <button class="button" id="downloadReportBtn" onclick="downloadReport()">Download Mining Report</button>
+            
+            <!-- Pause/Resume Mining Buttons -->
+            <div class="pause-resume-buttons">
+                <button class="button" id="pauseMiningBtn" onclick="pauseMining()" style="display: none;">Pause Mining</button>
+                <button class="button" id="resumeMiningBtn" onclick="resumeMining()" style="display: none;">Resume Mining</button>
+            </div>
         </div>
     </div>
 
-    <div class="message-sender-container">
-        <h2></h2>
-        <textarea id="messageInput" placeholder="Type your message here..."></textarea>
-        <button onclick="sendMessage()">Send it</button>
+    <div class="compact-button-container">
+        <button class="compact-button" onclick="toggleBackgroundMusic()">Toggle Music</button>
     </div>
 
     <script>
-        const imageSrc = 'https://faakdis.com/image/PoF.png';
-        const imageWidth = 50; // Size of the images
-        const imageHeight = 50;
+        // Smart Contract ABIs
+        const fkdsTokenABI = [
+            "function balanceOf(address owner) view returns (uint256)",
+            "function transfer(address recipient, uint256 amount) public returns (bool)",
+            "function approve(address spender, uint256 amount) public returns (bool)",
+            "function allowance(address owner, address spender) view returns (uint256)"
+        ];
+
+        const gameRewardABI = [
+            "function distributeReward(address player) external",
+            "function rewards(address player) view returns (uint256)"
+        ];
+
+        // Smart Contract Addresses (Replace with actual addresses)
+        const tokenAddress = "0xA0aC1A4cA81c141527805500e29d0DaD9e3D4aaC"; // Replace with your actual token address
+        const gameRewardAddress = "0xF7b0A6e9f505bE1715566F5e67B5D983F6C3340b"; // Replace with your actual reward contract address
+
         let miningInterval;
-        let imageCount = 0;
-        let startTime;
-        const backgroundMusic = document.getElementById('backgroundMusic');
+        let miningActive = false;
+        let imagesMined = 0;
+        let miningReward = 0;
+        let miningSpeed = 500; // Default mining speed in milliseconds
+        const maxMinedImages = 200;
 
-        function startMining() {
-            document.getElementById('startButton').style.display = 'none';
-            document.getElementById('stopButton').style.display = 'inline-block';
-            backgroundMusic.play(); // Start music when mining starts
-            startTime = Date.now();
-            miningInterval = setInterval(addImageToCanvas, 5000); // Add image every 5 seconds
-        }
+        const canvas = document.getElementById('minedCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 400; // Set canvas width
+        canvas.height = 200; // Set canvas height
 
-        function stopMining() {
-            document.getElementById('startButton').style.display = 'inline-block';
-            document.getElementById('stopButton').style.display = 'none';
+        // Initialize Web3
+        let web3;
+        let fkdsContract;
+        let gameRewardContract;
+        let userAddress = null;
+
+        // Update Mining Statistics
+        const updateMiningStats = () => {
+            document.getElementById('hashRate').innerText = `Hash Rate: ${Math.random().toFixed(2)} H/s & Faak Rate: ${Math.random().toFixed(2)} H/s`;
+            document.getElementById('minedImages').innerText = `Images Mined: ${imagesMined}`;
+            document.getElementById('miningReward').innerText = `Mining Reward: ${miningReward.toFixed(2)} $FKDST`;
+
+            // Show claim button if conditions are met
+            if (imagesMined > 0 && (imagesMined % maxMinedImages === 0)) {
+                document.getElementById('claimBtn').style.display = 'inline';
+            }
+        };
+
+        // Start Mining
+        const startMining = () => {
+            if (!miningActive) {
+                miningActive = true;
+                document.getElementById('startButton').style.display = 'none';
+                document.getElementById('stopButton').style.display = 'inline';
+                document.getElementById('pauseMiningBtn').style.display = 'inline';
+
+                miningInterval = setInterval(() => {
+                    imagesMined++;
+                    miningReward += 0.005; // Increment reward
+                    const img = new Image();
+                    img.src = 'https://faakdis.com/image/PoF.png';
+                    img.onload = () => {
+                        ctx.drawImage(img, Math.random() * (canvas.width - 30), Math.random() * (canvas.height - 30), 30, 30);
+                        document.getElementById('levelFill').style.width = `${(imagesMined % 100)}%`; // Update level fill
+                    };
+                    updateMiningStats();
+                }, miningSpeed); // Use adjustable mining speed
+            }
+        };
+
+        // Stop Mining
+        const stopMining = () => {
+            miningActive = false;
             clearInterval(miningInterval);
-            backgroundMusic.pause(); // Stop music when mining stops
-            backgroundMusic.currentTime = 0; // Reset music to start
-        }
+            document.getElementById('stopButton').style.display = 'none';
+            document.getElementById('startButton').style.display = 'inline';
+            document.getElementById('downloadBtn').style.display = 'inline'; // Show download button
+            document.getElementById('pauseMiningBtn').style.display = 'none';
+            document.getElementById('resumeMiningBtn').style.display = 'none';
+        };
 
-        function addImageToCanvas() {
-            const canvas = document.getElementById('minedCanvas');
-            const ctx = canvas.getContext('2d');
-            const image = new Image();
-            image.src = imageSrc;
+        // Pause Mining
+        const pauseMining = () => {
+            if (miningActive) {
+                clearInterval(miningInterval);
+                miningActive = false;
+                document.getElementById('pauseMiningBtn').style.display = 'none';
+                document.getElementById('resumeMiningBtn').style.display = 'inline';
+            }
+        };
 
-            image.onload = () => {
-                const x = Math.random() * (canvas.width - imageWidth);
-                const y = Math.random() * (canvas.height - imageHeight);
-                ctx.drawImage(image, x, y, imageWidth, imageHeight);
-                imageCount++;
-                document.getElementById('minedImages').textContent = `Images Mined: ${imageCount}`;
-            };
+        // Resume Mining
+        const resumeMining = () => {
+            if (!miningActive) {
+                miningActive = true;
+                document.getElementById('resumeMiningBtn').style.display = 'none';
+                document.getElementById('pauseMiningBtn').style.display = 'inline';
 
-            updateLevelBar();
-            updateHashRate();
-        }
+                miningInterval = setInterval(() => {
+                    imagesMined++;
+                    miningReward += 0.005; // Increment reward
+                    const img = new Image();
+                    img.src = 'https://faakdis.com/image/PoF.png';
+                    img.onload = () => {
+                        ctx.drawImage(img, Math.random() * (canvas.width - 30), Math.random() * (canvas.height - 30), 30, 30);
+                        document.getElementById('levelFill').style.width = `${(imagesMined % 100)}%`; // Update level fill
+                    };
+                    updateMiningStats();
+                }, miningSpeed); // Use adjustable mining speed
+            }
+        };
 
-        function updateLevelBar() {
-            const levelFill = document.getElementById('levelFill');
-            let width = parseFloat(levelFill.style.width);
-            width = (width + 5) % 100; // Increase level and wrap around
-            levelFill.style.width = `${width}%`;
-        }
-
-        function updateHashRate() {
-            const elapsedTime = (Date.now() - startTime) / 1000; // Elapsed time in seconds
-            const hashRate = (imageCount / elapsedTime).toFixed(2);
-            document.getElementById('hashRate').textContent = `Hash Rate: ${hashRate} H/s (Faak Rate: ${hashRate} H/s)`;
-        }
-
-        function downloadImage() {
-            const canvas = document.getElementById('minedCanvas');
+        // Download Mined Image
+        const downloadImage = () => {
             const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
             link.download = 'mined_image.png';
+            link.href = canvas.toDataURL('image/png');
             link.click();
-        }
+        };
 
-        function playButtonSound() {
-            document.getElementById('compactButtonSound').play();
-        }
+        // Connect Wallet
+        const connectWallet = async () => {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    web3 = new Web3(window.ethereum);
+                    const accounts = await web3.eth.getAccounts();
+                    userAddress = accounts[0];
+                    document.getElementById('walletAddress').innerText = `Connected: ${userAddress}`;
+                    
+                    // Initialize Contracts
+                    fkdsContract = new web3.eth.Contract(fkdsTokenABI, tokenAddress);
+                    gameRewardContract = new web3.eth.Contract(gameRewardABI, gameRewardAddress);
+                    
+                    // Display Token Balance
+                    displayTokenBalance();
+                } catch (error) {
+                    console.error("Error connecting wallet:", error);
+                }
+            } else {
+                alert('Please install MetaMask!');
+            }
+        };
 
-        function sendMessage() {
-            document.getElementById('messageSendSound').play();
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value;
-            console.log("Message sent:", message); // Placeholder for actual message sending logic
-            messageInput.value = ''; // Clear the input field
-        }
+        // Display Token Balance
+        const displayTokenBalance = async () => {
+            if (fkdsContract && userAddress) {
+                try {
+                    const balance = await fkdsContract.methods.balanceOf(userAddress).call();
+                    const formattedBalance = web3.utils.fromWei(balance, 'ether');
+                    document.getElementById('tokenBalance').innerText = `Token Balance: ${formattedBalance} $FKDST`;
+                } catch (error) {
+                    console.error("Error fetching token balance:", error);
+                }
+            }
+        };
 
-        // Start background music
-        backgroundMusic.play();
+        // Claim Tokens
+        const claimTokens = async () => {
+            if (window.ethereum && userAddress) {
+                try {
+                    await gameRewardContract.methods.distributeReward(userAddress).send({ from: userAddress });
+                    alert('Rewards claimed successfully!');
+                    miningReward = 0; // Reset reward after claiming
+                    imagesMined = 0; // Reset images mined after claiming
+                    document.getElementById('claimBtn').style.display = 'none';
+                    document.getElementById('minedImages').innerText = `Images Mined: ${imagesMined}`;
+                    document.getElementById('miningReward').innerText = `Mining Reward: ${miningReward.toFixed(2)} $FKDST`;
+                    displayTokenBalance(); // Update token balance
+                } catch (error) {
+                    console.error("Error claiming rewards:", error);
+                }
+            } else {
+                alert('Please install MetaMask or connect your wallet!');
+            }
+        };
+
+        // Toggle Background Music
+        const toggleBackgroundMusic = () => {
+            const music = document.getElementById('backgroundMusic');
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        };
+
+        // Adjust Mining Speed
+        const adjustMiningSpeed = (speed) => {
+            miningSpeed = parseInt(speed);
+            document.getElementById('speedValue').innerText = miningSpeed;
+            if (miningActive) {
+                clearInterval(miningInterval);
+                miningInterval = setInterval(() => {
+                    imagesMined++;
+                    miningReward += 0.005; // Increment reward
+                    const img = new Image();
+                    img.src = 'https://faakdis.com/image/PoF.png';
+                    img.onload = () => {
+                        ctx.drawImage(img, Math.random() * (canvas.width - 30), Math.random() * (canvas.height - 30), 30, 30);
+                        document.getElementById('levelFill').style.width = `${(imagesMined % 100)}%`; // Update level fill
+                    };
+                    updateMiningStats();
+                }, miningSpeed);
+            }
+        };
+
+        // Download Mining Report
+        function downloadReport() {
+    // Get current mining stats
+    const hashRate = document.getElementById('hashRate').innerText;
+    const minedImages = document.getElementById('minedImages').innerText;
+    const miningReward = document.getElementById('miningReward').innerText;
+    const tokenBalance = document.getElementById('tokenBalance').innerText;
+    const walletAddress = document.getElementById('walletAddress').innerText; // Fetch wallet address
+
+    // Create the report content
+    const reportContent = `
+        Mining Report
+        --------------
+        ${hashRate}
+        ${minedImages}
+        ${miningReward}
+        ${tokenBalance}
+        Wallet Address: ${walletAddress}
+    `;
+
+    // Create a Blob from the report content
+    const blob = new Blob([reportContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a link element for downloading
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'mining_report.txt';
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up the link element and object URL
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+        // Initialize Web3 on Page Load
+        window.addEventListener('load', () => {
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+            } else {
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        });
     </script>
 </body>
+
 </html>
+
