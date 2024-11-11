@@ -3,376 +3,533 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faakdis Website</title>
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>FΔΔKD!S WΞBS!TΞ</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script> <!-- Include Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         body {
-            background: url('https://faakdis.com/image/4.gif') no-repeat center center;
-            background-size: cover;
+            background: url('https://faakdis.com/image/black.png') no-repeat center center;
+            background-size: cover; /* Adjust size as needed (50% is an example) */
             color: #00ffd5;
             font-family: 'Arial', sans-serif;
-            margin: 40;
+            margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 98vh;
+            height: 170vh;
             flex-direction: column;
+            cursor: url('/cursor/faakdis.cur'), auto;
         } 
-
         .cta-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
         }
-
         .cta-buttons a, .cta-buttons button {
             text-decoration: none;
             color: #00ffd5;
             background-color: rgba(0, 0, 0, 0.1);
-            border: 1px solid #00ffd5;
+            border: 0px solid #00ffd5;
             border-radius: 7px;
-            padding: 8px 16px;
-            margin: 10px;
-            font-size: 8px;
+            box-shadow: 0 0 2px #00ffd5;
+            padding: 6px 14px;
+            margin: 5px;
+            font-size: 9px;
             transition: background-color 0.3s, box-shadow 0.3s;
-            cursor: pointer;
+            cursor: url('/cursor/faakdis.cur'), auto;
         }
-
         .cta-buttons a:hover, .cta-buttons button:hover {
-            background-color: #0055FF;
-            box-shadow: 0 0 6px #00ffd5;
+            background-color: #00A085;
+            box-shadow: 0 0 1px #00ffd5;
         }
-
         .pof-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             background-color: rgba(0, 0, 0, 0.1);
-            border: 2px solid #000;
+            border: 1px solid #000;
             border-radius: 8px;
             padding: 10px;
-            box-shadow: 0 0 6px #00ffd5;
+            box-shadow: 0 0 3px #00ffd5;
             max-width: 90%;
-            margin: 10px;
+            margin: 20px;
             position: relative;
         }
-
         .pof-dashboard {
             text-align: center;
             padding: 10px;
-            border: 1px solid #00ffd5;
+            border: 0px solid #00ffd5;
             border-radius: 8px;
             background-color: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 6px #00ffd5;
-            margin-bottom: 0px;
+            box-shadow: 0 0 2px #00ffd5;
+            margin-bottom: 5px;
         }
-
         .canvas-container {
             position: relative;
             border: 0px solid #00ffd5;
             width: 100%;
             max-width: 400px;
             height: 200px;
-            margin: 10px 0;
+            margin: 5px 0;
             overflow: hidden;
         }
-
         canvas {
             width: 100%;
             height: 100%;
             display: block;
             background-color: transparent;
         }
-
         .button {
             padding: 6px 12px;
-            background-color: #00ffd5;
-            color: #000;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #00ffd5;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
+            box-shadow: 0 0 2px #00ffd5;
+            cursor:url('/cursor/faakdis.cur'), auto;
             font-size: 10px;
             margin: 3px;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
-
         .button:hover {
-            background-color: #0055FF;
-            box-shadow: 0 0 6px #00ffd5;
+            background-color: #00A085;
+            box-shadow: 0 0 1px #00ffd5;
         }
-
         .download-btn {
             display: none;
         }
-
         .mining-stats {
             text-align: center;
             margin-top: 10px;
         }
-
         .mining-stats div {
             margin: 3px 0;
             font-size: 12px;
         }
-
         .level-bar {
             position: absolute;
-            bottom: 10px;
+            bottom: 0px;
             left: 10px;
             width: calc(100% - 20px);
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid #00ffd5;
             border-radius: 8px;
-            box-shadow: 0 0 4px #00ffd5;
+            box-shadow: 0 0 1px #00ffd5;
             display: flex;
             align-items: center;
             padding: 2px;
         }
-
         .level-fill {
-            height: 100%;
-            background-color: #00ffd5;
+            height: 80%;
+            background-color: #00ff00;
             border-radius: 6px;
             transition: width 0.3s;
         }
-
-        .compact-button-container {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .compact-button {
-            background-color: #00ffd5;
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .compact-button:hover {
-            background-color: #0055FF;
-            box-shadow: 0 0 6px #00ffd5;
-        }
-
-        .message-sender-container {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.1);
-            border: 1px solid #000;
-            border-radius: 8px;
-            box-shadow: 0 0 6px #00ffd5;
-            max-width: 90%;
-        }
-
-        .message-sender-container textarea {
-            height: 70px;
-            resize: horizontal;
-        }
-
-        .message-sender-container button {
-            padding: 10px 12px;
-            border: none;
-            border-radius: 5px;
-            background: cyan;
-            color: black;
-            cursor: pointer;
-            font-size: 8px;
-            transition: background 0.3s;
-        }
-
-        .message-sender-container button:hover {
-            background: #00bcd4;
-        }
-
-        /* New Styles for Additional Features */
-        .additional-features {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .additional-features label {
-            font-size: 12px;
-            margin-bottom: 5px;
-        }
-
-        .additional-features input[type=range] {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .mining-report-btn {
-            display: none;
-        }
-
         .token-balance {
             margin-top: 10px;
             font-size: 12px;
-       
         }
-
         .status-message {
             margin-top: 10px;
-            font-size: 12px;
+            font-size: 10px;
             color: #00ffd5;
         }
-        /* Dropdown Menu Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
+        .star-rating {
+          font-size: 10px;
+          color: #FFD700;  /* Gold color for stars */
+          margin-bottom: 10px;
+        }
+        .star-rating .star {
+        display: inline-block;
+        transition: transform 1s;
+        }
+       .star-rating .star:hover {
+       transform: scale(2);
+        }
+        /* Main viewer styling */
+    #ipfsImageViewer {
+        max-width: 80%;
+        margin: auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 0 2px #00ffd5;
+        
+    }
+ 
+
+    /* Horizontal sliding container for images */
+    .gallery-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        margin-top: 10px;
+        scroll-behavior: smooth;
+    }
+
+    /* Styling for each image box */
+    .image-box {
+        position: relative;
+        background-color: ;
+        border: 1px solid #00ffd5;
+        box-shadow: 0 0 0.4px #00ffd5;
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 5px;
+        text-align: center;
+        transition: transform 0.3s;
+        min-width: 370px;
+        cursor: pointer;
+    }
+
+    /* Image thumbnail styling */
+    .image-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    /* Hover effect */
+    .image-box img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 5px #00ffd5;
+    }
+
+    /* Fullscreen overlay for clicked image */
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    /* Fullscreen image styling */
+    .fullscreen-overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #00ffd5;
+    }
+
+    /* Close button for fullscreen image */
+    .fullscreen-overlay .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: #00ffd5;
+        cursor: pointer;
+}
+
+.container {
+            width: 100%;
+            max-width: 390px;
+            margin: 0px;
+            padding: 20px;
+            border: 0px solid #00ffd5; /* Ice blue border */
+            border-radius: 10px;
+            box-shadow: 0px 0px 2px #00ffd5;
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.5);
-            min-width: 140px;
-            box-shadow: 0px 8px 16px rgba(0, 255, 255, 0.3);
-            z-index: 1;
-            border: 1px solid #00ffd5;
-            border-radius: 7px;
+        h1 {
+            font-size: 15px;
+            color: #00ffd5; /* Ice blue title */
         }
 
-        .dropdown-content a {
-            color: #00ffd5;
-            padding: 8px 12px;
+        #referralLinkContainer, #referralStats {
+            margin-top: 0px;
+        }
+
+
+        #statusMessage {
+            color: red;
+        }
+
+        p {
+            font-size: 15px;
+            margin: 0px 0;
+        }
+
+        a {
+            color: #00FFFF;
             text-decoration: none;
-            display: block;
         }
 
-        .dropdown-content a:hover {
-            background-color: #0055FF;
+        a:hover {
+            color: #00cccc;
+        }
+        
+        /* Burner UI container */
+        #burnerUI {
+        text-align: center;
+        padding: 20px;
+        background: 
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px #00ffd5;
+        width: 150px;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+/* Burner Button */
+#burnerUI button {
+    background:rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    color: #00ffd5;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px rgba(0, 255, 213, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .dropdown-btn {
-            color: #00ffd5;
-            background-color: rgba(0, 0, 0, 0.1);
-            border: 1px solid #00ffd5;
-            border-radius: 7px;
-            padding: 4px 8px;
-            font-size: 7px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
+#burnerUI button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 255, 213, 0.2);
+}
 
-        .dropdown-btn:hover {
-            background-color: #0055FF;
-            box-shadow: 0 0 6px #00ffd5;
-        }
+#burnStatus {
+    font-size: 8px;
+    color: #00FF00;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Boost Container */
+#boostContainer {
+    display: none; /* Hidden until activated */
+    text-align: center;
+    padding: 20px;
+    background: ;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0px 2px 2px rgba(0, 255, 213, 0.2);
+    width: 150px;
+}
+
+/* Countdown Timer */
+#countdownTimer {
+    font-size: 12px;
+    color: #00ffd5;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 5px;
+    animation: glow 1s infinite alternate;
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0px 0px 5px rgba(0, 255, 255, 0.8), 0px 0px 10px rgba(255, 0, 255, 0.8);
+    }
+    100% {
+        text-shadow: 0px 0px 10px rgba(0, 255, 255, 1), 0px 0px 20px rgba(255, 0, 255, 1);
+    }
+
+}
+/* Style for the button */
+#aboutButton {
+  background-color: rgba(0, 0, 0, 1);
+  color: #00ffd5; /* Black text for contrast */
+  border: 0px solid #00A085; /* A slightly darker neon green border for depth */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px; /* Padding inside the button */
+  font-size: 11px; /* Make it visible */
+  font-family: 'Courier New', monospace; /* Retro tech look */
+  cursor: url('/cursor/faakdis.cur'), auto; /* Using your custom cursor */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  box-shadow: 0 0 2px #00A085; /* Glow effect */
+  text-shadow: 1px 1px 2px #00A085; /* Text glow */
+  display: inline-block; /* Makes it easier to center if needed */
+  text-align: center; /* Center the text */
+}
+
+#aboutButton:hover {
+  background-color: rgba(0, 0, 0, 1);
+  box-shadow: 0 0 2px #00ffd5; /* More intense glow on hover */
+  transform: scale(1.05); /* Slightly scale up on hover for a zoom effect */
+}
+
+#aboutButton::after {
+  content: ''; /* Could be an icon or question marks */
+  
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+#aboutButton:hover::after {
+  content: ''; /* Change on hover for fun */
+  color: #FF0000; /* Red for emphasis */
+}
+
+/* Style for the popup */
+#aboutPopup {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 1); /* Dark background with transparency */
+  padding: 20px;
+  border: 0px solid #00ffd5; /* Neon green border */
+  box-shadow: 0px 0px 1px #00ffd5;
+  border-radius: 10px; /* Rounded corners */
+  color: #00ffd5; /* Neon green text for visibility */
+  width: 80%;
+  max-width: 450px;
+  z-index: 1000;
+  text-align: center; /* Center the content */
+  font-family: 'Courier New', monospace;
+}
+
+/* Close button for the popup */
+#closePopupButton {
+  background-color:rgba(0, 0, 0, 1);
+  color: #00ffd5; /* Black text for contrast */
+  border: none;
+  box-shadow: 0px 0px 0.5px #00ffd5;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#closePopupButton:hover {
+  background-color: rgba(0, 0, 0, 1); /* A shade darker for hover effect */
+  color: #00ffd5; /* Swap colors on hover for a cool effect */
+  box-shadow: 0px 0px 2px #00ffd5;
+}
+
+
     </style>
 </head>
 <body>
-     <header style="text-align: center; margin-bottom: 20px; color: #00ffd5;">
-        <h1 style="font-size: 25px;">FAAKDIS WEBSITE</h1>
-        <h2 style="font-size: 12px;">On Sepolia Testnet</h2>
-        <h3 style="font-size: 10px;">Work in progress</h3>
+     <header style="text-align: center; margin-bottom: 0px; color: #00ffd5;">
+        <h1 style="font-size: 25px;">FΔΔKD!S WΞBS!TΞ</h1>
+        
+        <audio id="popupAudio" src="https://faakdis.com/MUSIC/DONTPANIC.mp3" preload="auto"></audio>
+ 
+       <button id="aboutButton">WHΔT'S THΔT SITΞ ΔBOUT</button>
+
+<div id="aboutPopup">
+  <h3>DON'T PΔNIC!</h3>
+  <h3>HΞRΞ'S WHΔT TH!S S!TΞ'S ΔBOUT:</h3>
+  <h1>!MAG!NΞ YOU'RΞ H!TCHH!K!NG THROUGH THΞ D!G!TΔL UN!VΞRSΞ, ΔND YOU'VΞ JUST STUMBLED UPON Δ S!TΞ THΔT'S PΔRT CRYPTO-MYSTΞRY, PΔRT ΔRT !NSTΔLLΔT!ON, ΔND ΞNT!RΞLY Δ PLΔCΞ WHΞRΞ THΞ CONCΞPT OF 'MΔK!NG SΞNSΞ' TΔKΞS Δ HOL!DΔY.</h1> 
+  <h1>HΞRΞ, YOU CΔN:</h1>
+  <ul>
+    <li>M!NΞ FOR V!RTUΔL ΔRT!FΔCTS !N Δ CΔNVΔS OF CHΔOS.</li>
+    <li>BURN TOKΞNS FOR Δ TΞMPORΔRY BOOST BΞCΔUSΞ, WHY NOT?</li>
+    <li>CONNΞCT YOUR WΔLLΞT ΔND JO!N THΞ D!G!TΔL TR!BΞ.</li>
+    <li>ΞXPΞR!ΞNCΞ THΞ THR!LL OF THΞ UNKNOWN, BΞCΔUSΞ WHY SΞTTLΞ FOR KNOW!NG?</li>
+    <h1></h1>
+    <h1>____________________________</h1>
+    <h1></h1>
+    <h1>SΞPOL!Δ TΞSTNΞT</h1>
+    <h1>WORK !N PROGRΞSS</h1>
+    
+    <h1>REWARD CA: 0xF7b0A6e9f505bE1715566F5e67B5D983F6C3340b</h1>
+    <h1>$FKDST: 0xA0aC1A4cA81c141527805500e29d0DaD9e3D4aaC</h1>
+  </ul>
+  <button id="closePopupButton">Close</button>
+</div> 
+    
     </header>
-        
-        <div class="cta-buttons">
-        <div class="dropdown">
-            <a href="#" class="dropdown-btn">M U S I C</a>
-            <div class="dropdown-content">
-                <a href="https://soundcloud.com/faakdis">FAAKDIS MUSIC</a>
-                <a href="https://faakdis.com/MONEYMUSICETH">$MONEY MUSIC</a>
-                
-            </div>
-        </div>
-
-        <div class="dropdown">
-            <a href="#" class="dropdown-btn">G A M E S</a>
-            <div class="dropdown-content">
-                <a href="https://faakdis.com/FSG">SNAKE</a>
-                <a href="https://faakdis.com/FAAKNMEMO">MEMO</a>
-                <a href="https://faakdis.com/SLOT">SLOT MACHINE</a>
-                <a href="https://faakdis.com/2048">2048</a>
-                <a href="https://faakdis.com/HAMMER">HAMMER</a>
-                <a href="https://faakdis.com/IQG">I Q G</a>
-                <a href="https://faakdis.com/GFSVG">G F S V G</a>
-                <a href="https://faakdis.com/0x100db67f41a2df3c32cc7c0955694b98339b7311">SHEEP RACE</a>
-                
-                <a href="https://faakdis.com/COINGENERATOR">$MONEY C G</a>
-                
-            </div>
-        </div>
-
-        <div class="dropdown">
-            <a href="#" class="dropdown-btn">M E M E S</a>
-            <div class="dropdown-content">
-                <a href="https://faakdis.com/MONEYMEMES">$MONEY</a>
-                <a href="https://faakdis.com/SHEEPMEMES">SHEEP</a>
-                <a href="https://faakdis.com/PORKMEMES">$PORK</a>
-            </div>
-        </div>
-        
-        <div class="dropdown">
-            <a href="#" class="dropdown-btn">G U I D E</a>
-            <div class="dropdown-content">
-                <a href="https://faakdis.com/HOWTOGETIT">NOTHING</a>
-            </div>
-        </div>
-        
-        
-    </div>
-
-    <audio id="backgroundMusic" src="https://coral-rapid-heron-712.mypinata.cloud/ipfs/QmQhREJq6AjEqs6qb2KfuhGhXcmnb4NdjHMPNHfAtuyQuP/GONE.mp3" preload="auto"></audio>
-  
+    
     <div class="pof-container">
     <div class="pof-dashboard">
         <h1>P o F</h1>
-        <button id="startButton" class="button" onclick="startMining()">Start Mining</button>
-        <button id="stopButton" class="button" onclick="stopMining()" style="display: none;">Stop Mining</button>
+        <button id="startButton" class="button" onclick="startMining()" style="display: none;">STΔRT M!N!NG</button>
+        <button id="stopButton" class="button" onclick="stopMining()" style="display: none;">STOP M!N!NG</button>
     </div>
 
     <div class="canvas-container">
-        <canvas id="minedCanvas"></canvas>
-        <div class="level-bar">
-            <div id="levelFill" class="level-fill" style="width: 0%;"></div>
-        </div>
+    <canvas id="minedCanvas"></canvas>
+    <div class="level-bar">
+    <div id="levelFill" class="level-fill" style="width: 0%;"></div>
+   </div> 
     </div>
-
-    <button class="button download-btn" id="downloadBtn" onclick="downloadImage()" style="display: none;">Download PoF Image</button>
-    <button class="button claim-btn" id="claimBtn" onclick="claimTokens()" style="display: none;">Claim Rewards</button>
-
-    <div class="mining-stats">
-        <h2>Mining Statistics</h2>
-        <div id="hashRate">Hash Rate: 0 H/s & Faak Rate: 0 H/s</div>
-        <div id="minedImages">Images Mined: 0</div>
-        <div id="miningReward">Mining Reward: 0</div>
-        <div class="token-balance" id="tokenBalance">Token Balance: 0 $FKDST</div>
-    </div>
-
-    <button id="connectButton" class="button" onclick="connectWallet()">Connect Wallet</button>
-    <div id="walletAddress" style="margin-top: 10px; color: #00FFFF;"></div>
-    <div id="statusMessage" class="status-message"></div>
-
-
-        <button class="button" id="downloadReportBtn" onclick="downloadMiningReport()">P o F RECEIPT</button>
-        
- <div class="pause-resume-buttons">
-            <button class="button" id="pauseMiningBtn" onclick="pauseMining()" style="display: inline;"></button>
-            <button class="button" id="resumeMiningBtn" onclick="resumeMining()" style="display: none;"></button>
-        </div>
-    </div>
+  
     
 
-<div class="compact-button-container">
-    <button class="compact-button" onclick="toggleBackgroundMusic()">Toggle Music</button>
+
+    <div class="mining-stats"> 
+    <div id="hashRate">HΔSH RΔTΞ: 0 H/s & FΔΔK RΔTΞ: 0 H/s</div>
+    <div id="minedImages">!MΔGΞS M!NΞD: 0</div>
+    <div id="miningReward">M!N!NG TIME: 0</div>
+    <div id="dateTime">DATΞ & TIMΞ: --</div> <!-- New element for real-time date and time -->
+    <div class="token-balance" id="tokenBalance">TOKΞN BΔLΔNCΞ: 0 $FKDST</div>
+    
+    <div id="starRating" class="star-rating"></div> <!-- Star rating added here -->
+    <canvas id="rateChart" width="400" height="150"></canvas>
+    </div> 
+
+    <button id="connectButton" class="button" onclick="connectWallet()">CONNΞCT WΔLLΞT</button>
+    <div id="walletAddress" style="margin-top: 10px; color: #00FFFF;"></div>
+    <div id="statusMessage" class="status-message"></div>
+    
+     <!-- Burner UI (before boost) -->
+<div id="burnerUI">
+    <button onclick="burnTokensForBoost()">BURN 1 $FKDST TO BOOST 5mn</button>
+    <p id="burnStatus"></p>
 </div>
+
+<!-- Boost Container (after burning tokens) -->
+<div id="boostContainer" style="display: none;">
+    <p id="countdownTimer"></p>
+</div>
+    
+    </div> 
+    
+   <div id="ipfsImageViewer"> 
+   <button id="uploadToIPFSButton" class="button" onclick="uploadReceiptToIPFS()">P o F RΞCΞ!PT</button>
+    <h4 style="color: #00ffd5;"></h4>
+    <div id="ipfsImages" class="gallery-container"></div>
+</div>
+
+<!-- Status message for feedback -->
+<div id="statusMessage" style="margin-top: 12px; text-align: center;"></div>
+
+<div class="container">
+        <h1></h1>
+        
+        <!-- Referral Link and Stats -->
+        <div id="referralLinkContainer" style="display: none;">
+            <h3>YOUR RΞFΞRRΔL LINK:</h3>
+            <p id="referralLink"></p>
+        </div>
+        
+        <div id="referralStats">
+            <h3>RΞFΞRRΔL STΔTS</h3>
+            <p>TOTΔL RΞFΞRRΔLS: <span id="totalReferrals">0</span></p>
+            <p>RΞFΞRRΔL RΞWΔRDS: <span id="referralRewards">0</span> $FKDST</p>
+        </div>
+    </div>
+        
+     <div class="cta-buttons">        
+    <a href="https://faakdis.com/FSG" class="simple-button">S</a>
+    <a href="https://faakdis.com/FAAKNMEMO" class="simple-button">M M</a>
+    <a href="https://faakdis.com/SLOT" class="simple-button">S M</a>
+    <a href="https://faakdis.com/HAMMER" class="simple-button">H</a>
+    <a href="https://faakdis.com/FSR" class="simple-button">S R</a>
+    <a href="https://faakdis.com/HOWTOGETIT">N/Δ</a>
+</div>
+    
+ <audio id="audioPlayer" preload="auto">
+    <source src="https://faakdis.com/MUSIC/GONE.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <script>
     const fkdsTokenABI = [
@@ -422,189 +579,222 @@
         "type": "function"
     }
 ];
+   const tokenAddress = "0xA0aC1A4cA81c141527805500e29d0DaD9e3D4aaC";
+const gameRewardAddress = "0xF7b0A6e9f505bE1715566F5e67B5D983F6C3340b";
+const referralRewards = 1; // Amount for each referral in $FKDST tokens
 
-    const tokenAddress = "0xA0aC1A4cA81c141527805500e29d0DaD9e3D4aaC";
-    const gameRewardAddress = "0xF7b0A6e9f505bE1715566F5e67B5D983F6C3340b";
+let lastMiningTime = {};
+let miningInterval;
+let miningActive = false;
+let imagesMined = 0;
+let miningReward = 0;
+let miningSpeed = 250;
+const claimThreshold = 400; // Claim every 400 images mined
 
-    let miningInterval;
-    let miningActive = false;
-    let imagesMined = 0;
-    let miningReward = 0;
-    let miningSpeed = 1000; 
-    const maxMinedImages = 100;
+const canvas = document.getElementById('minedCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 400;
+canvas.height = 200;
 
-    const canvas = document.getElementById('minedCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 400;
-    canvas.height = 200;
+let web3;
+let fkdsContract;
+let gameRewardContract;
+let userAddress = null;
 
-    let web3;
-    let fkdsContract;
-    let gameRewardContract;
-    let userAddress = null;
+const displayStatusMessage = (message, isError = true) => {
+    const statusMessageElement = document.getElementById('statusMessage');
+    statusMessageElement.innerText = message;
+    statusMessageElement.style.color = isError ? '#FF0000' : '#00FF00';
+};
 
-    const displayStatusMessage = (message, isError = true) => {
-        const statusMessageElement = document.getElementById('statusMessage');
-        statusMessageElement.innerText = message;
-        statusMessageElement.style.color = isError ? '#FF0000' : '#00FF00';
-    };
+const updateMiningStats = () => {
+    document.getElementById('hashRate').innerText = `HΔSH RΔTΞ: ${Math.random().toFixed(2)} H/s & FΔΔK RΔTΞ: ${Math.random().toFixed(2)} H/s`;
+    document.getElementById('minedImages').innerText = `!MΔGΞS M!NΞD: ${imagesMined}`;
+    document.getElementById('miningReward').innerText = `M!N!NG T!MΞ: ${miningReward.toFixed(2)} `;
+};
 
-    const updateMiningStats = () => {
-        document.getElementById('hashRate').innerText = `Hash Rate: ${Math.random().toFixed(2)} H/s & Faak Rate: ${Math.random().toFixed(2)} H/s`;
-        document.getElementById('minedImages').innerText = `Images Mined: ${imagesMined}`;
-        document.getElementById('miningReward').innerText = `Mining Reward: ${miningReward.toFixed(2)} $FKDST`;
+const startMining = () => {
+    if (!miningActive) {
+        miningActive = true;
 
-        if (imagesMined >= maxMinedImages) {
-            document.getElementById('claimBtn').style.display = 'inline';
-        }
-    };
+        document.getElementById('startButton').style.display = 'none';
+        document.getElementById('stopButton').style.display = 'inline';
 
-    const startMining = () => {
-        if (!miningActive) {
-            miningActive = true;
-            document.getElementById('startButton').style.display = 'none';
-            document.getElementById('stopButton').style.display = 'inline';
-            document.getElementById('pauseMiningBtn').style.display = 'inline';
+        miningInterval = setInterval(() => {
+            imagesMined++;
+            miningReward += 0.00238;
 
-            miningInterval = setInterval(() => {
-                imagesMined++;
-                miningReward += 0.0025;
-                const img = new Image();
-                img.src = 'https://coral-rapid-heron-712.mypinata.cloud/ipfs/QmXgeBPLqwZUnzBrWtXfYC6tAVpsowC1nVwuL7wqLhpFyw';
-                img.onload = () => {
-                    ctx.drawImage(img, Math.random() * (canvas.width - 30), Math.random() * (canvas.height - 30), 30, 30);
-                    document.getElementById('levelFill').style.width = `${(imagesMined % 100)}%`;
-                };
-                updateMiningStats();
-            }, miningSpeed);
-        }
-    };
+            // Display image on canvas
+            const img = new Image();
+            img.src = 'https://faakdis.com/image/PoF2.png';
+            img.onload = () => {
+                ctx.drawImage(img, Math.random() * (canvas.width - 15), Math.random() * (canvas.height - 15), 15, 15);
+                document.getElementById('levelFill').style.width = `${(imagesMined % 100)}%`;
+            };
 
-    const stopMining = () => {
-        miningActive = false;
-        clearInterval(miningInterval);
-        document.getElementById('stopButton').style.display = 'none';
-        document.getElementById('startButton').style.display = 'inline';
-        document.getElementById('downloadBtn').style.display = 'inline';
-        document.getElementById('pauseMiningBtn').style.display = 'none';
-        document.getElementById('resumeMiningBtn').style.display = 'none';
-    };
+            // Update displayed stats
+            updateMiningStats();
 
-    const claimTokens = async () => {
-        if (web3 && gameRewardContract && userAddress) {
-            try {
-                await gameRewardContract.methods.distributeReward(userAddress).send({ from: userAddress });
-                alert('Rewards claimed successfully!');
-                miningReward = 0; 
-                imagesMined = 0;
-                document.getElementById('claimBtn').style.display = 'none';
-                document.getElementById('minedImages').innerText = `Images Mined: ${imagesMined}`;
-                document.getElementById('miningReward').innerText = `Mining Reward: ${miningReward.toFixed(2)} $FKDST`;
-                displayTokenBalance();
-                displayStatusMessage('Rewards claimed successfully!', false);
-            } catch (error) {
-                console.error("Error claiming rewards:", error);
-                displayStatusMessage('Error claiming rewards: ' + error.message);
+            // Automatically claim rewards at every multiple of 400 images mined
+            if (imagesMined % claimThreshold === 0) {
+                claimTokens(); // Auto-claim
             }
-        } else {
-            displayStatusMessage('Unable to claim rewards. Contract not initialized.', true);
+        }, miningSpeed);
+    }
+};
+
+const stopMining = () => {
+    miningActive = false;
+    clearInterval(miningInterval);
+    document.getElementById('stopButton').style.display = 'none';
+    document.getElementById('startButton').style.display = 'inline';
+    document.getElementById('downloadBtn').style.display = 'inline';
+};
+
+const claimTokens = async () => {
+    if (web3 && gameRewardContract && userAddress) {
+        try {
+            await gameRewardContract.methods.distributeReward(userAddress).send({ from: userAddress });
+            alert('Rewards claimed successfully!');
+            displayStatusMessage('Rewards claimed successfully!', false);
+            displayTokenBalance();
+        } catch (error) {
+            console.error("Error claiming rewards:", error);
+            displayStatusMessage('Error claiming rewards: ' + error.message, true);
         }
-    };
-    
-      // Download Mined Image
-        const downloadImage = () => {
-            const link = document.createElement('a');
-            link.download = 'mined_image.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
+    } else {
+        displayStatusMessage('Unable to claim rewards. Contract not initialized.', true);
+    }
+};
+
+const connectWallet = async () => {
+    if (window.ethereum) {
+        try {
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            web3 = new Web3(window.ethereum);
+            const accounts = await web3.eth.getAccounts();
+            userAddress = accounts[0];
+            document.getElementById('walletAddress').innerText = ` ${userAddress}`;
+            displayStatusMessage('Wallet connected successfully!', false);
+
+            // Hide the connect button after wallet is connected
+            document.getElementById('connectButton').style.display = 'none';
+
+            // Initialize contracts
+            fkdsContract = new web3.eth.Contract(fkdsTokenABI, tokenAddress);
+            gameRewardContract = new web3.eth.Contract(gameRewardABI, gameRewardAddress);
+
+            displayTokenBalance();
+            // Display the referral link
+            displayReferralLink();
+
+            // Check for referral
+            checkForReferral();
+            
+        } catch (error) {
+            console.error("Error connecting wallet:", error);
+            displayStatusMessage('Error connecting wallet: ' + error.message);
+        }
+    } else {
+        displayStatusMessage('Please install MetaMask!', true);
+    }
+};
+
+     const displayReferralLink = () => {
+            const referralLink = `${window.location.origin}?ref=${userAddress}`;
+            const referralLinkElement = document.getElementById('referralLink');
+            const referralContainer = document.getElementById('referralLinkContainer');
+            
+            referralLinkElement.innerText = referralLink;
+            referralContainer.style.display = 'block';
         };
-    
-    const connectWallet = async () => {
-        if (window.ethereum) {
-            try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                web3 = new Web3(window.ethereum);
-                const accounts = await web3.eth.getAccounts();
-                userAddress = accounts[0];
-                document.getElementById('walletAddress').innerText = `Connected: ${userAddress}`;
-                displayStatusMessage('Wallet connected successfully!', false);
 
-                fkdsContract = new web3.eth.Contract(fkdsTokenABI, tokenAddress);
-                gameRewardContract = new web3.eth.Contract(gameRewardABI, gameRewardAddress);
-
-                displayTokenBalance();
-            } catch (error) {
-                console.error("Error connecting wallet:", error);
-                displayStatusMessage('Error connecting wallet: ' + error.message);
+        const checkForReferral = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const referrerAddress = urlParams.get('ref');
+            if (referrerAddress && referrerAddress !== userAddress) {
+                await trackReferral(referrerAddress);
             }
-        } else {
-            displayStatusMessage('Please install MetaMask!');
-        }
-    };
+        };
 
+        const trackReferral = async (referrerAddress) => {
+            try {
+                let referralCount = parseInt(localStorage.getItem(`${referrerAddress}_referrals`) || "0", 10);
+                referralCount += 1;
+                localStorage.setItem(`${referrerAddress}_referrals`, referralCount);
+
+                const rewardAmount = web3.utils.toWei(referralRewards.toString(), 'ether');
+                // Distribute reward via game reward contract
+                await gameRewardContract.methods.distributeReward(referrerAddress).send({ from: userAddress });
+
+                displayStatusMessage(`Referral recorded! Sent ${referralRewards} $FKDST to ${gameRewardAddress}`, false);
+            } catch (error) {
+                console.error("Error rewarding referrer:", error);
+                displayStatusMessage("Referral tracking failed.");
+            }
+        };
+
+        const updateReferralStats = () => {
+            const referralCount = parseInt(localStorage.getItem(`${userAddress}_referrals`) || "0", 10);
+            const earnedTokens = referralCount * referralRewards;
+            document.getElementById('totalReferrals').innerText = referralCount;
+            document.getElementById('referralRewards').innerText = earnedTokens;
+        };
+        
+     const updateDateTime = () => {
+        const dateTimeElement = document.getElementById('dateTime');
+        const now = new Date();
+
+        // Format date and time as "YYYY-MM-DD HH:MM:SS"
+        const formattedDateTime = now.toLocaleString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false  // 24-hour format
+        });
+        // Set the formatted date and time in the element
+        dateTimeElement.innerText = `DATΞ & TIMΞ: ${formattedDateTime}`;
+    };
+    // Start real-time clock updates
+    setInterval(updateDateTime, 1000);
+    
     const displayTokenBalance = async () => {
-        if (fkdsContract && userAddress) {
-            try {
-                const balance = await fkdsContract.methods.balanceOf(userAddress).call();
-                const formattedBalance = web3.utils.fromWei(balance, 'ether');
-                document.getElementById('tokenBalance').innerText = `Token Balance: ${formattedBalance} $FKDST`;
-                displayStatusMessage('Token balance updated!', false);
-            } catch (error) {
-                console.error("Error fetching token balance:", error);
-                displayStatusMessage('Error fetching token balance: ' + error.message);
-            }
-        } else {
-            displayStatusMessage('Unable to fetch balance. Contract not initialized.', true);
+    if (fkdsContract && userAddress) {
+        try {
+            const balance = await fkdsContract.methods.balanceOf(userAddress).call();
+            const formattedBalance = web3.utils.fromWei(balance, 'ether');
+            document.getElementById('tokenBalance').innerText = `TOKΞN BΔLΔNCΞ: ${formattedBalance} $FKDST`;
+            displayStatusMessage('Token balance updated!', false);
+            
+            // Update star rating based on token balance
+            updateStarRating(parseFloat(formattedBalance));
+        } catch (error) {
+            console.error("Error fetching token balance:", error);
+            displayStatusMessage('Error fetching token balance: ' + error.message);
         }
+    } else {
+        displayStatusMessage('Unable to fetch balance. Contract not initialized.', true);
+    }
+};
+const updateStarRating = (balance) => {
+    const starRatingElement = document.getElementById('starRating');
+    let stars = 0;
+
+    if (balance >= 50000) stars = 5;
+    else if (balance > 1000) stars = 4;
+    else if (balance >= 500) stars = 3;
+    else if (balance >= 50) stars = 2;
+    else if (balance > 5) stars = 1;
+    else if (balance > 0) stars = 0;
+    
+    starRatingElement.innerHTML = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+
+        
+        document.getElementById('startButton').style.display = 'inline';
     };
-
-  // Download Mining Report as an Image
-        const downloadMiningReport = () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 400;
-            canvas.height = 600;
-
-            // Background color for the ticket
-            ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Add border
-            ctx.strokeStyle = "#000";
-            ctx.lineWidth = 2;
-            ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
-
-            // Header
-            ctx.fillStyle = "#000";
-            ctx.font = "bold 20px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText("P o F RECEIPT", canvas.width / 2, 50);
-
-            // Mining Stats
-            ctx.font = "12px Arial";
-            ctx.textAlign = "left";
-            const stats = [
-                `${document.getElementById('hashRate').textContent}`,
-                `${document.getElementById('minedImages').textContent}`,
-                `${document.getElementById('miningReward').textContent}`,
-                `${document.getElementById('tokenBalance').textContent}`,
-                `${document.getElementById('walletAddress').innerText}`,
-            ];
-
-            for (let i = 0; i < stats.length; i++) {
-                ctx.fillText(stats[i], 20, 120 + (i * 40));
-            }
-
-            // Footer
-            ctx.textAlign = "center";
-            ctx.fillText("Thank you for mining!", canvas.width / 2, canvas.height - 50);
-
-            // Download the canvas as an image
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL("image/png");
-            link.download = 'P_o_F_RECEIPT.png';
-            link.click();
-        };
 
     window.addEventListener('load', () => {
         if (window.ethereum) {
@@ -613,7 +803,407 @@
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
             displayStatusMessage('Non-Ethereum browser detected. Please try MetaMask.');
         }
+        
+        });  
+        
+        const rateChartContext = document.getElementById('rateChart').getContext('2d');
+let hashData = [];
+let faakData = [];
+let labels = [];
+
+const rateChart = new Chart(rateChartContext, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Hash Rate',
+                borderColor: '#ff5e00',
+                data: hashData,
+                fill: false,
+            },
+            {
+                label: 'FAAK Rate',
+                borderColor: '#00ffd5',
+                data: faakData,
+                fill: false,
+            },
+        ]
+    },
+    options: {
+        scales: {
+            x: {
+                display: true,
+                title: { display: true, text: 'Time' }
+            },
+            y: {
+                display: true,
+                title: { display: true, text: 'Rate (H/s)' }
+            }
+        }
+    }
+});
+
+function updateRateChart() {
+    const hashRate = Math.random().toFixed(2);
+    const faakRate = Math.random().toFixed(2);
+    
+    // Limit data points for visual clarity
+    if (hashData.length > 20) {
+        hashData.shift();
+        faakData.shift();
+        labels.shift();
+    }
+    
+    hashData.push(hashRate);
+    faakData.push(faakRate);
+    labels.push(new Date().toLocaleTimeString());
+    
+    rateChart.update();
+
+    document.getElementById('hashRate').innerText = `HΔSH RΔTΞ: ${hashRate} H/s & FΔΔK RΔTΞ: ${faakRate} H/s`;
+}
+
+// Call updateRateChart every second to simulate real-time updates
+setInterval(updateRateChart, 1000);
+
+let boostActive = false; // Track if boost is active
+let boostEndTime = 0; // Timestamp when boost ends
+let burnAmount = 1; // Amount of $FKDST to burn for boost
+let boostContainer = document.getElementById('boostContainer'); // Boost container element
+let countdownTimer = document.getElementById('countdownTimer'); // Countdown display element
+
+// Function to start the burn transaction and apply the boost
+async function burnTokensForBoost() {
+    const burnAmountWei = web3.utils.toWei(burnAmount.toString(), 'ether');
+
+    try {
+        // Transfer the burn amount to the dead address
+        const burnTransaction = await fkdsContract.methods.transfer('0x000000000000000000000000000000000000dEaD', burnAmountWei)
+            .send({ from: userAddress });
+
+        document.getElementById('burnStatus').innerText = `Burn successful! TX: ${burnTransaction.transactionHash}`;
+
+        // Start boost if burn is successful
+        activateBoost();
+    } catch (error) {
+        console.error("Burn failed:", error);
+        document.getElementById('burnStatus').innerText = "Failed to burn tokens. See console for details.";
+    }
+}
+
+// Activate boost: Increase mining speed and start 5-minute timer
+function activateBoost() {
+    if (boostActive) return; // Ensure boost is not already active
+
+    boostActive = true;
+    boostEndTime = Date.now() + 5 * 60 * 1000; // 5 minutes from now
+
+    // Double the mining speed for 5 minutes
+    miningSpeed = miningSpeed /4;
+
+    // Hide burner UI and show boost container with countdown
+    document.getElementById('burnerUI').style.display = 'none'; // Hide burn UI
+    boostContainer.style.display = 'block'; // Show boost container
+
+    // Start the countdown
+    updateBoostCountdown();
+
+    // Set interval to update the countdown every second
+    const countdownInterval = setInterval(() => {
+        if (Date.now() >= boostEndTime) {
+            clearInterval(countdownInterval); // Stop the countdown when boost ends
+            deactivateBoost();
+        } else {
+            updateBoostCountdown();
+        }
+    }, 1000);
+}
+
+// Update countdown timer display
+function updateBoostCountdown() {
+    const timeLeft = boostEndTime - Date.now();
+    if (timeLeft > 0) {
+        const minutes = Math.floor(timeLeft / 60000);
+        const seconds = Math.floor((timeLeft % 60000) / 1000);
+        countdownTimer.innerText = `Boost active: ${minutes}m ${seconds}s remaining`;
+    }
+}
+
+// Deactivate boost: Reset mining speed and UI elements
+function deactivateBoost() {
+    boostActive = false;
+    miningSpeed = miningSpeed * 2; // Restore normal mining speed
+
+    // Hide boost UI and show burner UI
+    boostContainer.style.display = 'none';
+    document.getElementById('burnerUI').style.display = 'block';
+}
+
+document.getElementById('aboutButton').addEventListener('click', function() {
+  document.getElementById('aboutPopup').style.display = 'block';
+});
+
+document.getElementById('closePopupButton').addEventListener('click', function() {
+  document.getElementById('aboutPopup').style.display = 'none';
+});
+
+document.getElementById('aboutButton').addEventListener('click', function() {
+  document.getElementById('aboutPopup').style.display = 'block';
+  playAudio();
+});
+
+document.getElementById('closePopupButton').addEventListener('click', function() {
+  document.getElementById('aboutPopup').style.display = 'none';
+  stopAudio();
+});
+
+function playAudio() {
+  var audio = document.getElementById('popupAudio');
+  audio.play().catch(error => {
+    // For browsers that require user interaction for autoplay
+    console.log("Audio play prevented due to user interaction requirement.");
+  });
+}
+
+
+ // Pinata API credentials
+const pinataApiKey = 'd68de55cf26c7c309b1a';
+const pinataSecretApiKey = 'c1eb059a07b47e0edcacab633bd23aaa231e7d79008810e88125ff03a6ca8a1e';
+
+// Array to store uploaded IPFS URLs securely
+let ipfsImageURLs = JSON.parse(localStorage.getItem('ipfsImageURLs') || '[]');
+
+// Sanitize URL input
+const sanitizeURL = (url) => {
+    const urlPattern = /^https:\/\/ipfs\.io\/ipfs\/[A-Za-z0-9]+$/;
+    return urlPattern.test(url) ? url : '';
+};
+
+// Extract IPFS hash from the URL
+const extractIpfsHash = (url) => {
+    const match = url.match(/\/ipfs\/([A-Za-z0-9]+)/);
+    return match ? match[1] : null;
+};
+
+// Generate the receipt image and return it as a data URL
+const getReceiptImageURL = () => {
+    const receiptCanvas = document.createElement('canvas');
+    const receiptCtx = receiptCanvas.getContext('2d');
+    receiptCanvas.width = 400;
+    receiptCanvas.height = 580;
+
+    const now = new Date();
+    const formattedDateTime = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
     });
-</script>
+
+    // Set up canvas background and header
+    receiptCtx.fillStyle = "#FFFFFFFC";
+    receiptCtx.fillRect(0, 0, receiptCanvas.width, receiptCanvas.height);
+    receiptCtx.fillStyle = "#000000";
+    receiptCtx.font = "bold 15px Arial";
+    receiptCtx.textAlign = "center";
+    receiptCtx.fillText("P o F RΞCΞ!PT", receiptCanvas.width / 2, 40);
+
+    // Display Date and Time
+    receiptCtx.font = "12px Arial";
+    receiptCtx.textAlign = "left";
+    receiptCtx.fillText(`: ${formattedDateTime}`, 20, 70);
+
+    // Add mining stats on the receipt
+    const stats = [
+        { label: "", value: document.getElementById('hashRate').innerText },
+        { label: "", value: document.getElementById('minedImages').innerText },
+        { label: "", value: document.getElementById('miningReward').innerText },
+        { label: "", value: document.getElementById('tokenBalance').innerText },
+        { label: "", value: document.getElementById('walletAddress').innerText },
+        { label: "", value: document.getElementById('starRating').innerText }
+    ];
+
+    let startY = 100;
+    stats.forEach((stat, index) => {
+        receiptCtx.fillText(`${stat.label}: ${stat.value}`, 20, startY + (index * 30));
+    });
+
+    // Draw mined images on the receipt
+    const minedCanvas = document.getElementById('minedCanvas');
+    if (minedCanvas) {
+        receiptCtx.drawImage(minedCanvas, 20, startY + stats.length * 30 + 30, 360, 180);
+    }
+
+    receiptCtx.font = "italic 12px Arial";
+    receiptCtx.textAlign = "center";
+    receiptCtx.fillText("🜨 ♁ ☷ 🜃", receiptCanvas.width / 2, receiptCanvas.height - 40);
+
+    return receiptCanvas.toDataURL('image/png');
+};
+
+// Convert a data URL to a blob for uploading to IPFS
+const dataURLToBlob = async (dataURL) => {
+    try {
+        const response = await fetch(dataURL);
+        return await response.blob();
+    } catch (error) {
+        console.error("Error converting data URL to blob:", error);
+    }
+};
+
+// Upload receipt to IPFS
+const uploadToIPFS = async (blob) => {
+    try {
+        const formData = new FormData();
+        formData.append('file', blob);
+
+        const response = await fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', {
+            method: 'POST',
+            headers: {
+                'pinata_api_key': pinataApiKey,
+                'pinata_secret_api_key': pinataSecretApiKey
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to upload to IPFS");
+        }
+
+        const data = await response.json();
+        const ipfsURL = `https://ipfs.io/ipfs/${data.IpfsHash}`;
+        return sanitizeURL(ipfsURL);
+    } catch (error) {
+        console.error("IPFS upload error:", error);
+        alert("Failed to upload to IPFS. Please try again later.");
+    }
+};
+
+// Upload receipt, add to gallery, and store in local storage
+const uploadReceiptToIPFS = async () => {
+    const imageDataURL = getReceiptImageURL();
+    const blob = await dataURLToBlob(imageDataURL);
+
+    if (!blob) {
+        console.error("Failed to create Blob from image data");
+        return;
+    }
+
+    const ipfsURL = await uploadToIPFS(blob);
+    if (ipfsURL) {
+        ipfsImageURLs.push(ipfsURL);
+        localStorage.setItem('ipfsImageURLs', JSON.stringify(ipfsImageURLs));
+        displayIPFSImage(ipfsURL);
+    }
+};
+
+function openPopup() {
+  document.querySelector('.about-popup').classList.remove('hidden');
+}
+
+function closePopup() {
+  document.querySelector('.about-popup').classList.add('hidden');
+}
+
+
+// Unpin from IPFS using Pinata's API
+const unpinFromIPFS = async (ipfsHash) => {
+    try {
+        const response = await fetch(`https://api.pinata.cloud/pinning/unpin/${ipfsHash}`, {
+            method: 'DELETE',
+            headers: {
+                'pinata_api_key': pinataApiKey,
+                'pinata_secret_api_key': pinataSecretApiKey
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to unpin from IPFS. Status: ${response.status}`);
+        }
+
+        console.log("Successfully unpinned from IPFS:", ipfsHash);
+    } catch (error) {
+        console.error("IPFS unpin error:", error);
+        alert("Failed to unpin from IPFS. Please try again later.");
+    }
+};
+
+// Display IPFS receipt in gallery with download and burn options
+const displayIPFSImage = (url) => {
+    const sanitizedURL = sanitizeURL(url);
+    if (!sanitizedURL) return;
+
+    const ipfsImagesContainer = document.getElementById('ipfsImages');
+    const imageWrapper = document.createElement('div');
+    imageWrapper.className = 'image-box';
+
+    const img = document.createElement('img');
+    img.src = sanitizedURL;
+    img.alt = "Uploaded Receipt";
+    img.style.width = "200px";  // Thumbnail size
+    imageWrapper.appendChild(img);
+
+    // Download button
+    const downloadButton = document.createElement('button');
+    downloadButton.className = 'download-btn';
+    downloadButton.innerText = "Download";
+    downloadButton.onclick = () => downloadImage(sanitizedURL);
+    imageWrapper.appendChild(downloadButton);
+
+    // Burn button
+    const burnButton = document.createElement('button');
+    burnButton.className = 'burn-btn';
+    burnButton.innerText = "Burn";
+    burnButton.onclick = () => burnImage(url, imageWrapper);
+    imageWrapper.appendChild(burnButton);
+
+    ipfsImagesContainer.appendChild(imageWrapper);
+};
+
+
+// Burn image (remove from local storage, unpin from IPFS, and update UI)
+const burnImage = async (url, element) => {
+    const ipfsHash = extractIpfsHash(url);
+
+    if (ipfsHash) {
+        await unpinFromIPFS(ipfsHash);
+        console.log("Unpinned from IPFS:", ipfsHash);
+
+        // Remove from local storage and UI
+        ipfsImageURLs = ipfsImageURLs.filter(storedUrl => storedUrl !== url);
+        localStorage.setItem('ipfsImageURLs', JSON.stringify(ipfsImageURLs));
+        element.remove();
+        displayStatusMessage("Receipt burned successfully and unpinned from IPFS!", false);
+    } else {
+        console.error("Invalid IPFS URL. Could not extract IPFS hash.");
+    }
+};
+
+// Load all stored IPFS receipts on page load
+const loadAllIPFSImages = () => {
+    ipfsImageURLs.forEach((url) => {
+        displayIPFSImage(url);
+    });
+};
+
+window.onload = loadAllIPFSImages;
+
+  // Function to play audio
+    function playAudio() {
+        var audio = document.getElementById('audioPlayer');
+        audio.play();
+    }
+
+    // Trigger audio when the connect button is clicked (or any other button you want)
+    document.getElementById('connectButton').addEventListener('click', playAudio);
+
+
+  
+    
+  </script>
 </body>
 </html>
