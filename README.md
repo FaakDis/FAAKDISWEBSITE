@@ -19,9 +19,4 @@
 - **Web Browser**: Modern browser with JavaScript enabled.
 - **Ethereum Wallet**: Like MetaMask for wallet connection features.
 
-### Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone [repository-url]
-   cd [repository-name]
