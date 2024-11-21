@@ -162,7 +162,7 @@ const startMining = () => {
 
             // Display image on canvas
             const img = new Image();
-            img.src = 'https://faakdis.com/image/PoF2.png';
+            img.src = 'https://coral-rapid-heron-712.mypinata.cloud/ipfs/QmermAvB3Lzj4ARn8tMW3c3kbXo3yfxBwwZKeeTQyS8Zvu';
             img.onload = () => {
                 ctx.drawImage(img, Math.random() * (canvas.width - 15), Math.random() * (canvas.height - 15), 15, 15);
                 document.getElementById('levelFill').style.width = `${(imagesMined % 100)}%`;
