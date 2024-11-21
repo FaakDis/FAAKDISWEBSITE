@@ -1,0 +1,537 @@
+body { 
+            background: url('https://faakdis.com/image/black.png') no-repeat center center;
+            background-size: cover; /* Adjust size as needed (50% is an example) */
+            color: #00ffd5;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 140;
+            flex-direction: column;
+            cursor: url('/cursor/faakdis.cur'), auto;
+        } 
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        .cta-buttons a, .cta-buttons button {
+            text-decoration: none;
+            color: #00ffd5;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 0px solid #00ffd5;
+            border-radius: 7px;
+            box-shadow: 0 0 2px #00ffd5;
+            padding: 6px 14px;
+            margin: 5px;
+            font-size: 9px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            cursor: url('/cursor/faakdis.cur'), auto;
+        }
+        .cta-buttons a:hover, .cta-buttons button:hover {
+            background-color: #00A085;
+            box-shadow: 0 0 1px #00ffd5;
+        }
+        .pof-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 0px solid #00ffd5; /* Ice blue border */
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 0 2px #00ffd5;
+    width: 95%; /* Limit the width for a compact look */
+    max-width: 420px; /* Ideal for mobile screens */
+    margin: 10px auto;
+    position: relative;
+        }
+        .pof-dashboard {
+            text-align: center;
+            padding: 10px;
+            border: 0px solid #00ffd5;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 2px #00ffd5;
+            margin-bottom: 5px;
+        }
+        .canvas-container {
+            position: relative;
+            border: 0px solid #00ffd5;
+            border-radius: 8px;
+             box-shadow: 0 0 2px #00ffd5;
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            margin: 5px 0;
+            overflow: hidden;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: transparent;
+        }
+        .button {
+            padding: 6px 12px;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #00ffd5;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 2px #00ffd5;
+            cursor:url('/cursor/faakdis.cur'), auto;
+            font-size: 10px;
+            margin: 3px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background-color: #00A085;
+            box-shadow: 0 0 1px #00ffd5;
+        }
+       .mining-stats-container {
+    border: 0px solid #00ffd5; /* Ice blue border for frame */
+    border-radius: 8px;
+    box-shadow: 0 0 2px #00ffd5; /* Subtle glow effect */
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Transparent background inside the frame */
+    width: calc(100% - 20px); /* Keep it compact */
+    max-width: 380px; /* Ensure it stays compact for mobile */
+}
+
+        
+        .mining-stats {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .mining-stats div {
+            margin: 3px 0;
+            font-size: 12px;
+        }
+        .level-bar {
+            position: absolute;
+            bottom: 0px;
+            left: 10px;
+            width: calc(100% - 20px);
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 0px solid #00ffd5;
+            border-radius: 8px;
+            box-shadow: 0 0 2px #00ffd5;
+            display: flex;
+            align-items: center;
+            padding: 2px;
+        }
+        .level-fill {
+            height: 80%;
+            background-color: #00ff00;
+            border-radius: 6px;
+            transition: width 0.3s;
+        }
+        .token-balance {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .status-message {
+            margin-top: 10px;
+            font-size: 10px;
+            color: #00ffd5;
+        }
+        .star-rating {
+          font-size: 10px;
+          color: #FFD700;  /* Gold color for stars */
+          margin-bottom: 10px;
+        }
+        .star-rating .star {
+        display: inline-block;
+        transition: transform 1s;
+        }
+       .star-rating .star:hover {
+       transform: scale(2);
+        }
+        
+        /* Container for the toggle */
+.ipfs-toggle {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Center horizontally */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  padding: 10px 20px; /* Spacing inside the container */
+  border: 0px solid #000; /* Neon ice blue border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 0px #000; /* Neon glow */
+  cursor: url('/cursor/faakdis.cur'), auto;
+  transition: all 0.3s ease; /* Smooth hover effects */
+}
+
+/* Input toggle (checkbox) */
+.ipfs-toggle input[type="checkbox"] {
+  appearance: none; /* Remove default checkbox styling */
+  width: 5px;
+  height: 5px;
+  border: 0px solid #00ffd5; /* Neon border */
+  border-radius: 5px; /* Rounded toggle corners */
+  background-color: transparent; /* Transparent background */
+  cursor: url('/cursor/faakdis.cur'), auto;
+  position: relative; /* For inner styling */
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0px #00ffd5; /* Subtle glow */
+  transition: all 0.3s ease; /* Smooth animations */
+}
+
+/* Checked state for the checkbox */
+.ipfs-toggle input[type="checkbox"]:checked {
+  background-color: #00ffd5; /* Neon blue fill when checked */
+  box-shadow: 0 0 1px #00ffd5; /* Glow intensifies */
+  cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+
+
+/* Hover effect for the container */
+.ipfs-toggle:hover {
+  box-shadow: 0 0 0px #00ffd5; /* Brighter glow */
+  transform: scale(1.02); /* Slight enlargement */
+  cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+/* Main viewer styling */
+#ipfsImageViewer {
+    max-width: 90%;
+    width: calc(100% - 20px); /* Ensure it stays within parent container */
+    height: auto; /* Adapts to content */
+    margin: 10px auto; /* Centered within parent */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 2px #00ffd5;
+    position: relative;
+    overflow: hidden; /* Prevents overflow of content */
+    cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+/* Horizontal sliding container for images (one image at a time) */
+.gallery-container {
+    display: flex;
+    transition: transform 0.3s ease;
+    width: 100%;
+    flex-wrap: nowrap; /* Prevents wrapping */
+    justify-content: flex-start; /* Align images to the start */
+    overflow-x: auto; /* Allows horizontal scrolling if necessary */
+    overflow-y: hidden; /* No vertical overflow */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+/* Individual image box styling */
+.image-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 2px #00ffd5;
+    margin: 10px;
+    flex-shrink: 0; /* Prevents shrinking in flex layout */
+    cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+/* Futuristic Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+    height: 10px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2); /* Dark track for the scrollbar */
+    border-radius: 10px; /* Rounded edges */
+    box-shadow: inset 0 0 2px rgba(0, 255, 213, 0.3); /* Subtle inner glow */
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00ffd5, #00A085); /* Futuristic gradient */
+    border-radius: 10px; /* Rounded thumb for smoothness */
+    box-shadow: 0 0 2px #00ffd5, 0 0 2px #00A085; /* Outer glow effect */
+    border: 0px solid rgba(0, 0, 0, 0.4); /* Adds a border for depth */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #00A085, #00ffd5); /* Inverse gradient on hover */
+    box-shadow: 0 0 2px #00ffd5, 0 0 5px #00A085; /* Enhanced glow on hover */
+}
+
+::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0.2); /* Matching background for corner space */
+}
+
+/* Image styling */
+.image-box img {
+    max-width: 100%;
+    max-height: 100%; /* Keeps the image within bounds */
+    object-fit: contain; /* Ensures image does not stretch */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+/* Image hover effect */
+.image-box img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #00ffd5;
+}
+
+/* Button styling */
+.button {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #00ffd5;
+    border: none;
+    border-radius: 8px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+.button:hover {
+    background-color: #000;
+    transform: scale(1.1);
+}
+
+/* Specific button variations */
+.burn-btn { background-color: #000; }
+.burn-btn:hover { background-color: #000; }
+
+.mint-btn { background-color: #000; }
+.mint-btn:hover { background-color: #000; }
+
+.share-btn { background-color: #000; }
+.share-btn:hover { background-color: #000; }
+
+.keep-btn { background-color: #000; }
+.keep-btn:hover { background-color: #000; }
+
+/* Mobile adjustments */
+@media (max-width: 420px) {
+    #ipfsImageViewer {
+        padding: 5px;
+    }
+
+    .image-box {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 10px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 355px;
+    margin: 0;
+    padding: 20px;
+    border: 0 solid #00ffd5; /* Ice blue border */
+    border-radius: 10px;
+    box-shadow: 0 0 2px #00ffd5; /* Soft glow effect */
+    cursor: url('/cursor/faakdis.cur'), auto; /* Custom cursor */
+}
+
+h1 {
+    font-size: 12px;
+    color: #00ffd5; /* Ice blue for title */
+    margin-bottom: 10px; /* Add spacing under the title for readability */
+}
+
+#referralLinkContainer, #referralStats {
+    margin-top: 0;
+}
+
+#statusMessage {
+    color: red; /* Highlight error/status messages */
+}
+
+p {
+    font-size: 11px;
+    margin: 0; /* Consistent text spacing */
+}
+
+a {
+    color: #00FFFF; /* Bright ice blue links */
+    text-decoration: none; /* Clean look for links */
+}
+
+a:hover {
+    color: #00cccc; /* Slightly darker blue for hover effect */
+}
+
+        
+      
+/* Burner Button */
+#burnerUI button {
+    background:rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    color: #00ffd5;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px rgba(0, 255, 213, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: url('/cursor/faakdis.cur'), auto;
+}
+
+#burnerUI button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 255, 213, 0.2);
+}
+
+#burnStatus {
+    font-size: 8px;
+    color: #00FF00;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Boost Container */
+#boostContainer {
+    display: none; /* Hidden until activated */
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0px 2px 2px rgba(0, 255, 213, 0.2);
+    width: 150px;
+}
+
+/* Countdown Timer */
+#countdownTimer {
+    font-size: 12px;
+    color: #00ffd5;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 5px;
+    animation: glow 1s infinite alternate;
+}
+
+/* Glow Animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0px 0px 5px rgba(0, 255, 255, 0.5), 0px 0px 10px rgba(255, 0, 255, 0.8);
+    }
+    100% {
+        text-shadow: 0px 0px 10px rgba(0, 255, 255, 1), 0px 0px 20px rgba(255, 0, 255, 1);
+    }
+
+ } 
+/* Style for the button */
+#aboutButton {
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black background */
+  color: #00ffd5; /* Neon ice blue text */
+  border: 0 solid #00A085; /* No visible border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 15px; /* Button padding for consistent sizing */
+  font-size: 13px; /* Readable text size */
+  font-family: 'Courier New', monospace; /* Retro tech font style */
+  cursor: url('/cursor/faakdis.cur'), auto; /* Custom cursor */
+  transition: all 0.3s ease; /* Smooth transitions */
+  box-shadow: 0 0 2px #00A085; /* Subtle glow effect */
+  text-shadow: 1px 1px 2px #00A085; /* Glowing text effect */
+  display: inline-block; /* Inline block for better layout control */
+  text-align: center; /* Center-align the button text */
+}
+
+#aboutButton:hover {
+  background-color: rgba(0, 0, 0, 1); /* Fully opaque background on hover */
+  box-shadow: 0 0 4px #00ffd5; /* More intense glow on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+#aboutButton::after {
+  content: ''; /* Placeholder for future icons or effects */
+  margin-left: 5px; /* Spacing for additional content */
+  vertical-align: middle; /* Align with text */
+}
+
+#aboutButton:hover::after {
+  color: #FF0000; /* Red glow or emphasis (future feature) */
+}
+
+/* Style for the popup */
+#aboutPopup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed to viewport */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Perfect centering */
+  background: rgba(0, 0, 0, 0.9); /* Dark, slightly transparent background */
+  padding: 20px; /* Inner spacing for content */
+  border-radius: 8px; /* Smooth edges */
+  box-shadow: 0 0 7px #00ffd5; /* Neon glow effect */
+  color: #00ffd5; /* Neon text */
+  z-index: 1000; /* Ensures popup stays on top */
+  width: 90%; /* Responsive width */
+  max-width: 400px; /* Maximum width */
+  text-align: center; /* Center-align content */
+}
+
+#aboutPopup.active {
+  display: block; /* Show when active */
+  animation: fadeIn 0.3s ease-out; /* Smooth fade-in animation */
+}
+
+/* Style for the close button inside the popup */
+#closePopupButton {
+  position: absolute; /* Positioned relative to the popup */
+  top: 10px; /* Distance from the top of the popup */
+  right: 10px; /* Distance from the right of the popup */
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black background */
+  color: #FF0000; /* Bright red for visibility */
+  border: 0 solid #00ffd5; /* No visible border */
+  border-radius: 50%; /* Circular button */
+  width: 10px; /* Size of the button */
+  height: 10px; /* Size of the button */
+  font-size: 8px; /* Font size for the 'X' */
+  font-family: 'Courier New', monospace; /* Matching the theme */
+  line-height: 5px; /* Center the 'X' vertically */
+  text-align: center; /* Center the 'X' horizontally */
+  cursor: url('/cursor/faakdis.cur'), auto; /* Custom cursor */
+  box-shadow: 0 0 2px #FF0000; /* Subtle red glow */
+  transition: all 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+#closePopupButton:hover {
+  background-color: #FF0000; /* Bright red on hover */
+  color: #000000; /* Black 'X' for contrast */
+  box-shadow: 0 0 5px #FF0000; /* Intense glow on hover */
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+#closePopupButton:active {
+  transform: scale(0.95); /* Slight press-in effect when clicked */
+}
+
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%); /* Slightly above the center */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%); /* Fully centered */
+  }
+}
