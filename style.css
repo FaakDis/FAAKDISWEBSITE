@@ -1,5 +1,5 @@
 body { 
-            background: url('https://faakdis.com/image/black.png') no-repeat center center;
+            background: #000;
             background-size: cover; /* Adjust size as needed (50% is an example) */
             color: #00ffd5;
             font-family: 'Arial', sans-serif;
